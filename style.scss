@@ -18,7 +18,7 @@ html {
 }
 
 body {
-	background: $white;
+	background-color: $backgroundColor;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
 }
@@ -69,11 +69,11 @@ p {
 }
 
 a {
-  color: $blue;
+  color: $accentColor;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    // color: $blue;
   }
 }
 
@@ -242,16 +242,56 @@ nav {
 //
 
 .posts > .post {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-}
-
-.posts > .post:last-child {
-  padding-bottom: 1em;
-  border-bottom: none;
+  &:active, &:hover {
+    box-shadow: $materialShadow3;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  }
 }
 
 .post {
+  padding: 8px 0;
+  margin: 0 0 12px;
+  background-color: $paperBackgroundColor;
+  box-shadow: $materialShadow1;
+  border-radius: 2px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+
+  > .post-title {
+    padding: 16px 16px 12px;
+    font-size: 24px;
+
+    > a {
+      color: #000000 !important;
+    }
+  }
+
+  > .post-date {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 0 16px 16px;
+  }
+
+  > .post-entry {
+    color: rgba(0, 0, 0, 0.70);
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  > .dialog-buttons {
+    padding: 8px 8px 0;
+    text-align: right;
+
+    > .read-more-button {
+      color: $accentColor;
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 15px;
+      height: 36px;
+      padding: 8px;
+      min-width: 63px;
+    }
+  }
+
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
@@ -263,11 +303,6 @@ nav {
 
   .comments {
     margin-top: 10px;
-  }
-
-  .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
   }
 }
 
