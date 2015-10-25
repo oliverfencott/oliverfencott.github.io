@@ -1,15 +1,11 @@
 ---
 layout: page
-title: About
+title: Howdy
 permalink: /about/
 ---
 
-Some information about you!
+### I write JavaScript for a living
 
-### More Information
+I create [Reactjs](http://reactjs.org) applications all day and I stumble across things; this is the place that I will be talking about those things.
 
-A place to include any other types of information that you'd like to include about yourself.
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+### [Get in touch](mailto:olivefencott@gmail.com)
