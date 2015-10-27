@@ -25,72 +25,121 @@ For the purpose of this example, however, I will write a simple, easy to impleme
 
 Our container:
 
-    const MyFormContainer = React.createClass({
-      getInitialState: function() {
-        return {
-          username: '',
-          email: '',
-          password: '',
-          passwordConfirmation: ''
-        };
-      },
+```` js
+const MyFormContainer = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirmation: ''
+    };
+  },
 
-      render: function() {
-        return (
-          <MyForm
-            onChange={this.handleChange}
-            {...this.state}
-          />
-        );
-      },
+  render: function() {
+    return (
+      <MyForm
+        onChange={this.handleChange}
+        {...this.state}
+      />
+    );
+  },
 
-      handleChange: function(attribute, value) {
-        this.setState({
-          [attribute]: value
-        });
-      }
+  handleChange: function(attribute, value) {
+    this.setState({
+      [attribute]: value
     });
+  }
+});
+````
 
 Now, our actual form:
 
-    const MyForm = React.createClass({
-      render: function() {
-        const {handleChange} = this;
+```` js
+const MyForm = React.createClass({
+  render: function() {
+    const {handleChange} = this;
 
-        return (
-          <form>
-            <input
-              type='text'
-              name='username'
-              onChange={handleChange}
-            />
-            <input
-              type='email'
-              name='email'
-              onChange={handleChange}
-            />
-            <input
-              type='password'
-              name='password'
-              onChange={handleChange}
-            />
-            <input
-              type='password'
-              name='passwordConfirmation'
-              onChange={handleChange}
-            />
-            <button type='submit'>Submit</button>
-          </form>
-        );
-      },
+    return (
+      <form>
+        <input
+          type='text'
+          name='username'
+          onChange={handleChange}
+        />
+        <input
+          type='email'
+          name='email'
+          onChange={handleChange}
+        />
+        <input
+          type='password'
+          name='password'
+          onChange={handleChange}
+        />
+        <input
+          type='password'
+          name='passwordConfirmation'
+          onChange={handleChange}
+        />
+        <button type='submit'>Submit</button>
+      </form>
+    );
+  },
 
-      handleChange: function(event) {
-        const {name, value} = event.target;
-        const {onChange} = this.props;
+  handleChange: function(event) {
+    const {name, value} = event.target;
+    const {onChange} = this.props;
 
-        onChange(name, value);
-      }
+    onChange(name, value);
+  }
+});
+````
+
+
+We can D.R.Y this up though, right? Let's utilize composition.
+
+```` js
+const inputTypes = [
+  {type: 'text', name: 'username'},
+  {type: 'email', name: 'email'},
+  {type: 'password', name: 'password'},
+  {type: 'password', name: 'passwordConfirmation'},
+];
+
+const MyForm = React.createClass({
+  render: function() {
+    const inputItems = inputTypes.map(input => {
+      return this.renderInput(input);
     });
 
+    return (
+      <form>
+        {inputItems}
+        <button type='submit'>Submit</button>
+      </form>
+    );
+  },
+
+  renderInput: function(options) {
+    const {type, name} = options;
+
+    return (
+      <input
+        type={type}
+        name={name}
+        onChange={this.handleChange}
+      />
+    );
+  }
+
+  handleChange: function(event) {
+    const {name, value} = event.target;
+    const {onChange} = this.props;
+
+    onChange(name, value);
+  }
+});
+````
 
 Forms without refs, using the events that React provides us with; simple!
