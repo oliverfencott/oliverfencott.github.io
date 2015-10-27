@@ -17,7 +17,7 @@ An issue that I have with using refs is that **refs are used to reference the DO
 
 This is probably a Bad Thing when our application is merely a description of what the DOM should look like.
 
-Therefore, manipulating and interacting with something that isn't really there (per se) is something that I like to avoid. Fortunately, React gives us access to native browser events (sort of). So let's use them!
+Therefore, manipulating and interacting with something that isn't really there (per se) is something that I like to avoid. Fortunately, React gives us access to native browser events ([sort of](https://facebook.github.io/react/docs/events.html#syntheticevent)). So let's use them!
 
 A solution that I like to use is to have containers for each of my inputs within a form. These containers deal with data manipulation, and render only one child component: a dumb component, used only to pass information back up to its parent container, and to render what it is told to render (more on dumb components [here](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.k0oenue6f)). This allows validations to be encapsulated within their own container components.
 
